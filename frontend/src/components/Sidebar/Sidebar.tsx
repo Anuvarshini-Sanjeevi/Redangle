@@ -25,15 +25,15 @@ const Sidebar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems: MenuItem[] = [
-    { name: 'Dashboard',       icon: <LayoutDashboard className="w-7 h-7" />, path: '/admin/dashboard' },
-    { name: 'View Leads',      icon: <Eye className="w-7 h-7" />,            path: '/admin/view-leads' },
-    { name: 'Assign Leads',    icon: <UserCheck className="w-7 h-7" />,      path: '/admin/assign-leads' },
-    { name: 'Tracking Details',icon: <FileText className="w-7 h-7" />,       path: '/admin/tracking' },
-    { name: 'Invoice',         icon: <FileText className="w-7 h-7" />,       path: '/admin/invoice' },
-    { name: 'Approval',        icon: <CheckCircle className="w-7 h-7" />,    path: '/admin/approval' },
-    { name: 'Employees',       icon: <Users className="w-7 h-7" />,          path: '/admin/employees' },
-    { name: 'Quotation',       icon: <FileCheck className="w-7 h-7" />,      path: '/admin/quotation' },
-    { name: 'Report',          icon: <BarChart3 className="w-7 h-7" />,      path: '/admin/report' },
+    { name: 'Dashboard',        icon: <LayoutDashboard className="w-7 h-7" />, path: '/admin/dashboard' },
+    { name: 'View Leads',       icon: <Eye className="w-7 h-7" />,            path: '/admin/view-leads' },
+    { name: 'Assign Leads',     icon: <UserCheck className="w-7 h-7" />,      path: '/admin/assign-leads' },
+    { name: 'Tracking Details', icon: <FileText className="w-7 h-7" />,       path: '/admin/tracking' },
+    { name: 'Invoice',          icon: <FileText className="w-7 h-7" />,       path: '/admin/invoice' },
+    { name: 'Approval',         icon: <CheckCircle className="w-7 h-7" />,    path: '/admin/approval' },
+    { name: 'Employees',        icon: <Users className="w-7 h-7" />,          path: '/admin/employees' },
+    { name: 'Quotation',        icon: <FileCheck className="w-7 h-7" />,      path: '/admin/quotation' },
+    { name: 'Report',           icon: <BarChart3 className="w-7 h-7" />,      path: '/admin/report' },
   ];
 
   const handleLogout = () => {
@@ -59,7 +59,7 @@ const Sidebar = () => {
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         transition-transform duration-300 ease-in-out h-full`}
         style={{
-          // #6938ef with 20% opacity
+          // #6938ef with 20% opacity (use 0.11 for 11%)
           backgroundColor: 'rgba(105, 56, 239, 0.20)',
           borderRadius: '24px',
         }}
@@ -89,15 +89,15 @@ const Sidebar = () => {
                         navigate(item.path);
                         setIsMobileMenuOpen(false);
                       }}
-                      className={`w-full flex items-center gap-4 px-5 py-3.5 rounded-full
-                        transition-colors`}
+                      className="w-full flex items-center gap-4 px-5 py-3.5 rounded-full transition-colors"
                       style={
                         active
                           ? {
-                              backgroundColor: 'rgba(105, 56, 239, 0.20)',
-                              color: '#6938ef',
+                              backgroundColor: '#6938ef', // violet pill only for active
+                              color: '#ffffff',
                             }
                           : {
+                              backgroundColor: 'transparent',
                               color: '#333333',
                             }
                       }
@@ -105,7 +105,7 @@ const Sidebar = () => {
                       <span
                         className="flex items-center justify-center"
                         style={{
-                          color: active ? '#6938ef' : '#000000',
+                          color: active ? '#ffffff' : '#000000', // black icons when inactive
                         }}
                       >
                         {item.icon}
@@ -118,7 +118,7 @@ const Sidebar = () => {
             </ul>
           </nav>
 
-          {/* logo + logout */}
+          {/* logout + logo */}
           <div className="mt-6">
             <button
               onClick={handleLogout}

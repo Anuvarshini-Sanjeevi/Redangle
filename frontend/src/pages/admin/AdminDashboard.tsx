@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Bell } from 'lucide-react';
+import { useState } from 'react';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import Header from '../../components/Header/Header';
 
 interface ChartData {
   month: string;
@@ -233,33 +233,7 @@ interface Project {
 }
 
 const AdminDashboard = () => {
-  const [currentDate, setCurrentDate] = useState('');
-  const [currentTime, setCurrentTime] = useState('');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  useEffect(() => {
-    const updateDateTime = () => {
-      const now = new Date();
-      const date = now.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-      });
-      const time = now.toLocaleTimeString('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      });
-      setCurrentDate(date);
-      setCurrentTime(time);
-    };
-
-    updateDateTime();
-    const interval = setInterval(updateDateTime, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const projects: Project[] = [
     {
@@ -312,54 +286,129 @@ const AdminDashboard = () => {
       <Sidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden w-full min-w-0">
-        <header className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-4 md:py-5 flex-shrink-0">
-          <div className="flex items-center justify-end">
-            <div className="flex items-center gap-4 sm:gap-6">
-              <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <Bell className="w-6 h-6 sm:w-7 sm:h-7 text-gray-600" />
-              </button>
-              <div className="flex flex-col items-end text-base sm:text-lg">
-                <span className="text-gray-900 font-bold">DATE: {currentDate}</span>
-                <span className="text-gray-900 font-bold">TIME: {currentTime}</span>
-              </div>
-            </div>
-          </div>
-        </header>
+        <Header />
 
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 lg:p-10 w-full">
+          {/* Admin Dashboard Title */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 sm:mb-8">Admin Dashboard</h1>
+          
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10">
-            <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 sm:p-8 border border-gray-100">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-2 font-medium">Total Employees</p>
-                  <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900">12</p>
+            {/* Employees Card */}
+            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+              <div className="flex items-start gap-4">
+                <div className="relative flex-shrink-0">
+                  <svg className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28" viewBox="0 0 100 100">
+                    {/* Background circle (light grey outline) */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="none"
+                      stroke="#e5e7eb"
+                      strokeWidth="8"
+                    />
+                    {/* Progress arc (cyan-blue, about 75% of circle) */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="none"
+                      stroke="#06b6d4"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      strokeDasharray={`${2 * Math.PI * 45 * 0.75} ${2 * Math.PI * 45}`}
+                      strokeDashoffset={2 * Math.PI * 45 * 0.25}
+                      transform="rotate(-90 50 50)"
+                    />
+                  </svg>
+                  {/* Number inside circle */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#06b6d4]">12</span>
+                  </div>
                 </div>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-blue-100 flex items-center justify-center shadow-sm">
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600">12</span>
+                <div className="flex-1 pt-2">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1">Employees</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-500">Total Employees</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 sm:p-8 border border-gray-100">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-2 font-medium">Total leads</p>
-                  <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900">6</p>
+            {/* Leads Card */}
+            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+              <div className="flex items-start gap-4">
+                <div className="relative flex-shrink-0">
+                  <svg className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28" viewBox="0 0 100 100">
+                    {/* Background circle (light grey outline) */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="none"
+                      stroke="#e5e7eb"
+                      strokeWidth="8"
+                    />
+                    {/* Progress arc (cyan-blue, about 50% of circle) */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="none"
+                      stroke="#06b6d4"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      strokeDasharray={`${2 * Math.PI * 45 * 0.5} ${2 * Math.PI * 45}`}
+                      strokeDashoffset={2 * Math.PI * 45 * 0.5}
+                      transform="rotate(-90 50 50)"
+                    />
+                  </svg>
+                  {/* Number inside circle */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#06b6d4]">6</span>
+                  </div>
                 </div>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-red-100 flex items-center justify-center shadow-sm">
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-red-600">6</span>
+                <div className="flex-1 pt-2">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1">Leads</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-500">Total Leads</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 sm:p-8 sm:col-span-2 lg:col-span-1 border border-gray-100">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-2 font-medium">Successfull billing</p>
-                  <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900">42</p>
+            {/* Billing Card */}
+            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 sm:col-span-2 lg:col-span-1">
+              <div className="flex items-start gap-4">
+                <div className="relative flex-shrink-0">
+                  <svg className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28" viewBox="0 0 100 100">
+                    {/* Background circle (light grey outline) */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="none"
+                      stroke="#e5e7eb"
+                      strokeWidth="8"
+                    />
+                    {/* Progress arc (cyan-blue, about 90% of circle) */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="none"
+                      stroke="#06b6d4"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      strokeDasharray={`${2 * Math.PI * 45 * 0.9} ${2 * Math.PI * 45}`}
+                      strokeDashoffset={2 * Math.PI * 45 * 0.1}
+                      transform="rotate(-90 50 50)"
+                    />
+                  </svg>
+                  {/* Number inside circle */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#06b6d4]">42</span>
+                  </div>
                 </div>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full bg-blue-100 flex items-center justify-center shadow-sm">
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600">42</span>
+                <div className="flex-1 pt-2">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1">Billing</h3>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-500">Successful Billing</p>
                 </div>
               </div>
             </div>
