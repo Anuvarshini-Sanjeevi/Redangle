@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "target": "ES2020",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "allowJs": false,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "strict": true
+  },
+  "include": ["src"]
+}
