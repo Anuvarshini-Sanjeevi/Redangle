@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, X, Clock, Paperclip, Link as LinkIcon } from 'lucide-react';
+import { Calendar, X } from 'lucide-react';
 
 interface AddEmployeeModalProps {
   onClose: () => void;
@@ -8,16 +8,25 @@ interface AddEmployeeModalProps {
 
 const AddEmployeeModal = ({ onClose, onSave }: AddEmployeeModalProps) => {
   const [formData, setFormData] = useState({
-    taskName: '',
-    taskGroup: '',
-    estimate: '',
-    deadline: '',
-    priority: '',
-    assignee: '',
-    description: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    contactNumber: ''
+    contactNumber: '',
+    address: '',
+    workLocation: '',
+    salesType: '',
+    experience: '',
+    dateOfJoin: '',
+    portfolio: '',
+    photographyKnowledge: ''
   });
+
+  const getCurrentDate = () => {
+    const now = new Date();
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,164 +46,194 @@ const AddEmployeeModal = ({ onClose, onSave }: AddEmployeeModalProps) => {
       onClick={onClose}
     >
       <div 
-        className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto"
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="sticky top-0 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between rounded-t-2xl">
-          <h2 className="text-lg font-bold text-gray-900">Assign employee</h2>
+          <div>
+            <h2 className="text-base font-bold text-gray-900">Add New Employee</h2>
+            <p className="text-xs text-gray-600 mt-0.5">{getCurrentDate()}</p>
+          </div>
           <button
             onClick={onClose}
             className="w-7 h-7 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
           >
-            <X className="w-4 h-4 text-red-500" />
+            <X className="w-4 h-4 text-red-600" />
           </button>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-4">
-          <div className="space-y-3">
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1.5">Task Name</label>
-              <input
-                type="text"
-                placeholder="Task Name"
-                value={formData.taskName}
-                onChange={(e) => handleChange('taskName', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] focus:border-transparent text-sm"
-              />
+          {/* Basic Details */}
+          <div className="mb-4">
+            <h3 className="text-sm font-bold text-gray-900 mb-3">Basic Details</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">First Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter First Name"
+                  value={formData.firstName}
+                  onChange={(e) => handleChange('firstName', e.target.value)}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Last Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter Last Name"
+                  value={formData.lastName}
+                  onChange={(e) => handleChange('lastName', e.target.value)}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs"
+                />
+              </div>
             </div>
+          </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Task Group</label>
-              <select
-                value={formData.taskGroup}
-                onChange={(e) => handleChange('taskGroup', e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] focus:border-transparent appearance-none bg-white"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'right 0.75rem center',
-                  backgroundSize: '12px'
-                }}
-              >
-                <option value="">Select Task Group</option>
-                <option value="Design">Design</option>
-                <option value="Event Management">Event Management</option>
-                <option value="Photography">Photography</option>
-                <option value="Coordination">Coordination</option>
-                <option value="Catering">Catering</option>
-                <option value="Event Planning">Event Planning</option>
-              </select>
+          {/* Communication Details */}
+          <div className="mb-4">
+            <h3 className="text-sm font-bold text-gray-900 mb-3">Communication Details</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  type="email"
+                  placeholder="Enter your Email"
+                  value={formData.email}
+                  onChange={(e) => handleChange('email', e.target.value)}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Contact Number</label>
+                <input
+                  type="tel"
+                  placeholder="Enter Contact Number"
+                  value={formData.contactNumber}
+                  onChange={(e) => handleChange('contactNumber', e.target.value)}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs"
+                />
+              </div>
+              <div className="col-span-2">
+                <label className="block text-xs font-medium text-gray-700 mb-1">Address</label>
+                <textarea
+                  placeholder="Enter Address"
+                  value={formData.address}
+                  onChange={(e) => handleChange('address', e.target.value)}
+                  rows={2}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs resize-none"
+                />
+              </div>
             </div>
+          </div>
 
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1.5">Estimate</label>
-              <div className="relative">
+          {/* Professional Details */}
+          <div className="mb-4">
+            <h3 className="text-sm font-bold text-gray-900 mb-3">Professional Details</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Work location</label>
                 <select
-                  value={formData.estimate}
-                  onChange={(e) => handleChange('estimate', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] focus:border-transparent appearance-none bg-white pr-10 text-sm"
+                  value={formData.workLocation}
+                  onChange={(e) => handleChange('workLocation', e.target.value)}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs appearance-none bg-white"
                   style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
                     backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'right 0.75rem center',
+                    backgroundPosition: 'right 0.5rem center',
                     backgroundSize: '12px'
                   }}
                 >
-                  <option value="">Select duration</option>
-                  <option value="1 day">1 day</option>
-                  <option value="3 days">3 days</option>
-                  <option value="1 week">1 week</option>
-                  <option value="2 weeks">2 weeks</option>
-                  <option value="1 month">1 month</option>
+                  <option value="">Select Work location</option>
+                  <option value="NYC, New York">NYC, New York</option>
+                  <option value="Los Angeles, CA">Los Angeles, CA</option>
+                  <option value="Chicago, IL">Chicago, IL</option>
+                  <option value="Houston, TX">Houston, TX</option>
                 </select>
-                <Clock className="absolute right-8 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1.5">Dead Line</label>
-              <div className="relative">
-                <input
-                  type="date"
-                  placeholder="Select Date"
-                  value={formData.deadline}
-                  onChange={(e) => handleChange('deadline', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] focus:border-transparent pr-10 text-sm"
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Sales Type</label>
+                <select
+                  value={formData.salesType}
+                  onChange={(e) => handleChange('salesType', e.target.value)}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs appearance-none bg-white"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 0.5rem center',
+                    backgroundSize: '12px'
+                  }}
+                >
+                  <option value="">Select Sales Type</option>
+                  <option value="B2B">B2B</option>
+                  <option value="B2C">B2C</option>
+                  <option value="Both">Both</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Experience</label>
+                <select
+                  value={formData.experience}
+                  onChange={(e) => handleChange('experience', e.target.value)}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs appearance-none bg-white"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 0.5rem center',
+                    backgroundSize: '12px'
+                  }}
+                >
+                  <option value="">Select Experience</option>
+                  <option value="0-1 years">0-1 years</option>
+                  <option value="1-3 years">1-3 years</option>
+                  <option value="3-5 years">3-5 years</option>
+                  <option value="5+ years">5+ years</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Date of join</label>
+                <div className="relative">
+                  <input
+                    type="date"
+                    value={formData.dateOfJoin}
+                    onChange={(e) => handleChange('dateOfJoin', e.target.value)}
+                    className="w-full px-2.5 py-1.5 pr-8 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs"
+                  />
+                  <Calendar className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-gray-700 mb-1">Portfolio/Social Media</label>
+                <select
+                  value={formData.portfolio}
+                  onChange={(e) => handleChange('portfolio', e.target.value)}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs appearance-none bg-white"
+                  style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 0.5rem center',
+                    backgroundSize: '12px'
+                  }}
+                >
+                  <option value="">Select Portfolio</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="Behance">Behance</option>
+                  <option value="Dribbble">Dribbble</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Personal Website">Personal Website</option>
+                </select>
+              </div>
+              <div className="col-span-2">
+                <label className="block text-xs font-medium text-gray-700 mb-1">Photography knowledge</label>
+                <textarea
+                  placeholder="Enter Photography knowledge"
+                  value={formData.photographyKnowledge}
+                  onChange={(e) => handleChange('photographyKnowledge', e.target.value)}
+                  rows={3}
+                  className="w-full px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs resize-none"
                 />
-                <Calendar className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
-              </div>
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1.5">Priority</label>
-              <select
-                value={formData.priority}
-                onChange={(e) => handleChange('priority', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] focus:border-transparent appearance-none bg-white text-sm"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'right 0.75rem center',
-                  backgroundSize: '12px'
-                }}
-              >
-                <option value="">Select Priority</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1.5">Assignee</label>
-              <select
-                value={formData.assignee}
-                onChange={(e) => handleChange('assignee', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] focus:border-transparent appearance-none bg-white text-sm"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'right 0.75rem center',
-                  backgroundSize: '12px'
-                }}
-              >
-                <option value="">Select Assignee</option>
-                <option value="John Doe">John Doe</option>
-                <option value="Jane Smith">Jane Smith</option>
-                <option value="Mike Johnson">Mike Johnson</option>
-                <option value="Sarah Wilson">Sarah Wilson</option>
-                <option value="Tom Brown">Tom Brown</option>
-                <option value="Lisa Davis">Lisa Davis</option>
-                <option value="David Lee">David Lee</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1.5">Description</label>
-              <textarea
-                placeholder="Add some description of the task"
-                value={formData.description}
-                onChange={(e) => handleChange('description', e.target.value)}
-                rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] focus:border-transparent resize-none text-sm"
-              />
-              <div className="flex items-center gap-2 mt-2">
-                <button
-                  type="button"
-                  className="p-1.5 text-[#6938ef] hover:bg-purple-50 rounded-lg transition-colors"
-                  title="Attach file"
-                >
-                  <Paperclip className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  className="p-1.5 text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
-                  title="Add link"
-                >
-                  <LinkIcon className="w-4 h-4" />
-                </button>
               </div>
             </div>
           </div>
@@ -203,9 +242,9 @@ const AddEmployeeModal = ({ onClose, onSave }: AddEmployeeModalProps) => {
           <div className="flex justify-end pt-4 border-t border-gray-200 mt-4">
             <button
               type="submit"
-              className="px-5 py-2 bg-gradient-to-r from-[#6938ef] to-[#5a2dd4] text-white rounded-md font-medium hover:from-[#5a2dd4] hover:to-[#4a23c3] transition-all shadow-sm text-xs"
+              className="px-2.5 py-1.5 bg-gradient-to-r from-[#6938ef] to-[#5a2dd4] text-white rounded-md font-medium hover:from-[#5a2dd4] hover:to-[#4a23c3] transition-all shadow-sm text-xs"
             >
-              Assign Task
+              Save Details
             </button>
           </div>
         </form>
@@ -215,4 +254,3 @@ const AddEmployeeModal = ({ onClose, onSave }: AddEmployeeModalProps) => {
 };
 
 export default AddEmployeeModal;
-

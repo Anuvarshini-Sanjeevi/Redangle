@@ -94,12 +94,20 @@ const ViewEmployeeModal = ({ employee, onClose, onUpdate, onDelete }: ViewEmploy
             <User className="w-6 h-6 text-gray-700" />
             <h2 className="text-base font-bold text-gray-900">Employee Details</h2>
           </div>
-          <button
-            onClick={() => setIsEditing(!isEditing)}
-            className="px-2.5 py-1.5 bg-gradient-to-r from-[#6938ef] to-[#5a2dd4] text-white rounded-md font-medium hover:from-[#5a2dd4] hover:to-[#4a23c3] transition-all shadow-sm text-xs uppercase"
-          >
-            UPDATE EMPLOYEE
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsEditing(!isEditing)}
+              className="px-2.5 py-1.5 bg-gradient-to-r from-[#6938ef] to-[#5a2dd4] text-white rounded-md font-medium hover:from-[#5a2dd4] hover:to-[#4a23c3] transition-all shadow-sm text-xs uppercase"
+            >
+              UPDATE EMPLOYEE
+            </button>
+            <button
+              onClick={onClose}
+              className="p-1.5 rounded-full hover:bg-red-50 transition-colors"
+            >
+              <X className="w-4 h-4 text-red-600" />
+            </button>
+          </div>
         </div>
 
         {/* Employee Overview Section - Light Purple Background */}

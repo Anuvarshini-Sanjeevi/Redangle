@@ -60,7 +60,7 @@ const AddLeadModal = ({ onClose, onSave }: AddLeadModalProps) => {
             onClick={onClose}
             className="w-7 h-7 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors"
           >
-            <X className="w-4 h-4 text-red-500" />
+            <X className="w-4 h-4 text-red-600" />
           </button>
         </div>
 

@@ -156,8 +156,21 @@ const EmployeeProfile = () => {
   };
 
 
-  const handleEmployeeClick = () => {
-    navigate('/admin/employee-track');
+  const handleProjectClick = (project: Project) => {
+    navigate('/admin/tracking/employee-profile/track-employee', {
+      state: {
+        employee: {
+          employeeName: employeeInfo.name,
+          employeeId: employeeInfo.experience || 'EMP-001',
+          contactNumber: employeeInfo.mobile,
+          email: employeeInfo.email,
+          position: employeeInfo.position,
+          avatar: employeeInfo.avatar,
+          location: employeeInfo.location
+        },
+        project: project
+      }
+    });
   };
 
   return (
@@ -167,103 +180,103 @@ const EmployeeProfile = () => {
       <div className="flex-1 flex flex-col overflow-hidden w-full min-w-0">
         <Header />
 
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 lg:p-10 w-full">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 sm:mb-8">Employee Profile</h1>
+        <main className="flex-1 overflow-y-auto p-3 sm:p-4 w-full">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-5">Employee Profile</h1>
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
             {/* Left Column - Employee Info */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100 max-w-sm">
-                <div className="text-center mb-6">
+              <div className="bg-white rounded-xl shadow-md p-3 border border-gray-100 max-w-sm">
+                <div className="text-center mb-3">
                   <img
                     src={employeeInfo.avatar}
                     alt={employeeInfo.name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4"
+                    className="w-12 h-12 rounded-full mx-auto mb-2"
                   />
-                  <h2 className="text-2xl font-bold text-gray-900">{employeeInfo.name}</h2>
-                  <p className="text-gray-600 mt-1">{employeeInfo.position}</p>
+                  <h2 className="text-sm font-bold text-gray-900">{employeeInfo.name}</h2>
+                  <p className="text-xs text-gray-600 mt-1 font-normal">{employeeInfo.position}</p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Position</label>
+                    <label className="block text-xs font-medium text-gray-500 mb-1">Position</label>
                     <input
                       type="text"
                       value={employeeInfo.position}
                       readOnly
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900"
+                      className="w-full px-2 py-1.5 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 text-xs"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Company</label>
+                    <label className="block text-xs font-medium text-gray-500 mb-1">Company</label>
                     <input
                       type="text"
                       value={employeeInfo.company}
                       readOnly
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900"
+                      className="w-full px-2 py-1.5 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 text-xs"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Location</label>
+                    <label className="block text-xs font-medium text-gray-500 mb-1">Location</label>
                     <div className="relative">
                       <input
                         type="text"
                         value={employeeInfo.location}
                         readOnly
-                        className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg bg-gray-50 text-gray-900"
+                        className="w-full px-2 py-1.5 pr-8 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 text-xs"
                       />
-                      <MapPin className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <MapPin className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Birthday Date</label>
+                    <label className="block text-xs font-medium text-gray-500 mb-1">Birthday Date</label>
                     <div className="relative">
                       <input
                         type="text"
                         value={employeeInfo.birthday}
                         readOnly
-                        className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg bg-gray-50 text-gray-900"
+                        className="w-full px-2 py-1.5 pr-8 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 text-xs"
                       />
-                      <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Calendar className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Email</label>
+                    <label className="block text-xs font-medium text-gray-500 mb-1">Email</label>
                     <div className="relative">
                       <input
                         type="email"
                         value={employeeInfo.email}
                         readOnly
-                        className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg bg-gray-50 text-gray-900"
+                        className="w-full px-2 py-1.5 pr-8 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 text-xs"
                       />
-                      <Mail className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Mail className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Mobile Number</label>
+                    <label className="block text-xs font-medium text-gray-500 mb-1">Mobile Number</label>
                     <div className="relative">
                       <input
                         type="tel"
                         value={employeeInfo.mobile}
                         readOnly
-                        className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg bg-gray-50 text-gray-900"
+                        className="w-full px-2 py-1.5 pr-8 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 text-xs"
                       />
-                      <Phone className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                      <Phone className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-500 mb-1">Experience</label>
+                    <label className="block text-xs font-medium text-gray-500 mb-1">Experience</label>
                     <input
                       type="text"
                       value={employeeInfo.experience}
                       readOnly
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-900"
+                      className="w-full px-2 py-1.5 border border-gray-300 rounded-lg bg-gray-50 text-gray-900 text-xs"
                     />
                   </div>
                 </div>
@@ -272,16 +285,16 @@ const EmployeeProfile = () => {
 
             {/* Right Column - Projects */}
             <div className="lg:col-span-3">
-              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3">
-                    <button className="p-2 hover:bg-gray-100 rounded-lg">
-                      <Filter className="w-5 h-5 text-gray-600" />
+              <div className="bg-white rounded-xl shadow-md p-4 border border-gray-100">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <button className="p-1.5 hover:bg-gray-100 rounded-lg">
+                      <Filter className="w-4 h-4 text-gray-600" />
                     </button>
                     <select
                       value={filterType}
                       onChange={(e) => setFilterType(e.target.value)}
-                      className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-sm"
+                      className="px-2.5 py-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6938ef] text-xs"
                     >
                       <option>Current Projects</option>
                       <option>All Projects</option>
@@ -290,29 +303,29 @@ const EmployeeProfile = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {currentProjects.map((project) => (
                     <div
                       key={project.id}
-                      className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
-                      onClick={handleEmployeeClick}
+                      className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer"
+                      onClick={() => handleProjectClick(project)}
                     >
-                      <div className="flex items-start gap-4">
+                      <div className="flex items-start gap-3">
                         <img
                           src={project.avatar}
                           alt={project.projectName}
-                          className="w-14 h-14 rounded-full flex-shrink-0"
+                          className="w-10 h-10 rounded-full flex-shrink-0"
                         />
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs text-gray-500 mb-1">{project.projectId}</p>
-                          <h3 className="text-base font-bold text-gray-900 mb-1 truncate">{project.projectName}</h3>
-                          <p className="text-xs text-gray-500 mb-3">{project.date}</p>
-                          <div className="flex items-center gap-3 flex-wrap">
+                          <p className="text-xs text-gray-500 mb-0.5">{project.projectId}</p>
+                          <h3 className="text-xs text-gray-900 mb-0.5 truncate">{project.projectName}</h3>
+                          <p className="text-xs text-gray-500 mb-2">{project.date}</p>
+                          <div className="flex items-center gap-2 flex-wrap">
                             <div>
                               <span className="text-xs text-gray-500">Role: </span>
-                              <span className="text-xs font-semibold text-gray-900">{project.role}</span>
+                              <span className="text-xs text-gray-900">{project.role}</span>
                             </div>
-                            <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusColor(project.status)}`}>
+                            <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${getStatusColor(project.status)}`}>
                               {project.status}
                             </span>
                             <div className="flex items-center gap-1">
@@ -332,8 +345,8 @@ const EmployeeProfile = () => {
                 </div>
 
                 {totalPages > 1 && (
-                  <div className="mt-6 flex items-center justify-end gap-2">
-                    <div className="text-sm text-gray-600">
+                  <div className="mt-4 flex items-center justify-end gap-2">
+                    <div className="text-xs text-gray-600">
                       {startIndex + 1}-{Math.min(endIndex, projects.length)} of {projects.length}
                     </div>
                     <button
@@ -341,14 +354,14 @@ const EmployeeProfile = () => {
                       disabled={currentPage === 1}
                       className="text-gray-600 disabled:opacity-50"
                     >
-                      <ChevronLeft className="w-5 h-5" />
+                      <ChevronLeft className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                       disabled={currentPage === totalPages}
                       className="text-gray-600 disabled:opacity-50"
                     >
-                      <ChevronRight className="w-5 h-5" />
+                      <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
                 )}

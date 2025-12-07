@@ -278,13 +278,13 @@ const TrackingDetails = () => {
       },
       status: lead.status === 'Paid' ? 'Done' : 'In Progress'
     };
-    navigate('/admin/lead-track', {
+    navigate('/admin/tracking/track-leads', {
       state: { lead: leadData }
     });
   };
 
   const handleViewEmployee = (emp: EmployeeTracking) => {
-    navigate('/admin/employee-track', {
+    navigate('/admin/employees', {
       state: {
         employee: {
           id: emp.id,

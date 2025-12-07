@@ -24,18 +24,19 @@ const EmployeeTrack = () => {
   useEffect(() => {
     if (location.state?.employee) {
       const emp = location.state.employee;
+      const project = location.state?.project;
       setEmployeeData({
         name: emp.employeeName || 'Arjun',
-        eventType: emp.position || 'Wedding',
+        eventType: project?.projectName?.match(/\(([^)]+)\)/)?.[1] || project?.projectName || emp.position || 'Wedding',
         source: 'Website form',
-        location: 'NYC, New York, USA',
-        eventDate: 'May 19, 1996',
+        location: emp.location || 'NYC, New York, USA',
+        eventDate: project?.date || 'May 19, 1996',
         createdDate: 'May 19, 1996',
         employeeId: emp.employeeId || 'EMP - 1024',
         email: emp.email || 'Arjun@gmail.co',
         contact: emp.contactNumber || '91 - 123456785',
-        currentStage: 'Assigned',
-        avatar: emp.avatar || 'https://ui-avatars.com/api/?name=Arjun&background=6938ef&color=fff'
+        currentStage: project?.status === 'In Progress' ? 'Inprogress' : project?.status === 'Done' ? 'Done' : 'Assigned',
+        avatar: project?.avatar || emp.avatar || 'https://ui-avatars.com/api/?name=Arjun&background=6938ef&color=fff'
       });
     }
   }, [location.state]);
