@@ -10,6 +10,7 @@ import {
   FileCheck,
   BarChart3,
   LogOut,
+  Link as LinkIcon,
 } from 'lucide-react';
 import redAngleLogo from '../../assets/red_angle_logo.png';
 
@@ -25,15 +26,15 @@ const Sidebar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems: MenuItem[] = [
-    { name: 'Dashboard',        icon: <LayoutDashboard className="w-7 h-7" />, path: '/admin/dashboard' },
-    { name: 'View Leads',       icon: <Eye className="w-7 h-7" />,            path: '/admin/view-leads' },
-    { name: 'Assign Leads',     icon: <UserCheck className="w-7 h-7" />,      path: '/admin/assign-leads' },
-    { name: 'Tracking Details', icon: <FileText className="w-7 h-7" />,       path: '/admin/tracking' },
-    { name: 'Invoice',          icon: <FileText className="w-7 h-7" />,       path: '/admin/invoice' },
-    { name: 'Approval',         icon: <CheckCircle className="w-7 h-7" />,    path: '/admin/approval' },
-    { name: 'Employees',        icon: <Users className="w-7 h-7" />,          path: '/admin/employees' },
-    { name: 'Quotation',        icon: <FileCheck className="w-7 h-7" />,      path: '/admin/quotation' },
-    { name: 'Report',           icon: <BarChart3 className="w-7 h-7" />,      path: '/admin/report' },
+    { name: 'Dashboard',        icon: <LayoutDashboard className="w-4 h-4" />, path: '/admin/dashboard' },
+    { name: 'View Leads',       icon: <Eye className="w-4 h-4" />,            path: '/admin/view-leads' },
+    { name: 'Assign Leads',     icon: <UserCheck className="w-4 h-4" />,      path: '/admin/assign-leads' },
+    { name: 'Tracking Details', icon: <LinkIcon className="w-4 h-4" />,       path: '/admin/tracking' },
+    { name: 'Invoice',          icon: <FileText className="w-4 h-4" />,       path: '/admin/invoice' },
+    { name: 'Approval',         icon: <CheckCircle className="w-4 h-4" />,    path: '/admin/approval' },
+    { name: 'Employees',        icon: <Users className="w-4 h-4" />,          path: '/admin/employees' },
+    { name: 'Quotation',        icon: <FileCheck className="w-4 h-4" />,      path: '/admin/quotation' },
+    { name: 'Report',           icon: <BarChart3 className="w-4 h-4" />,      path: '/admin/report' },
   ];
 
   const handleLogout = () => {
@@ -55,31 +56,31 @@ const Sidebar = () => {
       </button>
 
       <aside
-        className={`fixed lg:static inset-y-0 left-0 z-40 w-80 flex-shrink-0 transform
+        className={`fixed lg:static inset-y-0 left-0 z-40 w-48 flex-shrink-0 transform
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         transition-transform duration-300 ease-in-out h-full`}
         style={{
           // #6938ef with 20% opacity (use 0.11 for 11%)
           backgroundColor: 'rgba(105, 56, 239, 0.20)',
-          borderRadius: '24px',
+          borderRadius: '12px',
         }}
       >
-        <div className="flex flex-col h-full px-4 pt-6 pb-6">
+        <div className="flex flex-col h-full px-2 pt-3 pb-3">
           {/* admin avatar */}
-          <div className="mb-8 flex items-center gap-4 px-2">
-            <div className="w-14 h-14 rounded-full overflow-hidden">
+          <div className="mb-4 flex items-center gap-2 px-1">
+            <div className="w-7 h-7 rounded-full overflow-hidden">
               <img
                 src="https://ui-avatars.com/api/?name=Admin&background=6938ef&color=fff"
                 alt="Admin"
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="text-base font-bold text-gray-700">Admin</span>
+            <span className="text-xs font-bold text-gray-700">Admin</span>
           </div>
 
           {/* menu */}
           <nav className="flex-1 overflow-y-auto">
-            <ul className="space-y-3">
+            <ul className="space-y-1.5">
               {menuItems.map((item) => {
                 const active = isActive(item.path);
                 return (
@@ -89,7 +90,7 @@ const Sidebar = () => {
                         navigate(item.path);
                         setIsMobileMenuOpen(false);
                       }}
-                      className="w-full flex items-center gap-4 px-5 py-3.5 rounded-full transition-colors"
+                      className="w-full flex items-center gap-2 px-2.5 py-2 rounded-full transition-colors"
                       style={
                         active
                           ? {
@@ -110,7 +111,7 @@ const Sidebar = () => {
                       >
                         {item.icon}
                       </span>
-                      <span className="font-bold text-lg">{item.name}</span>
+                      <span className="font-bold text-xs leading-none">{item.name}</span>
                     </button>
                   </li>
                 );
@@ -119,18 +120,18 @@ const Sidebar = () => {
           </nav>
 
           {/* logout + logo */}
-          <div className="mt-6">
+          <div className="mt-3">
             <button
               onClick={handleLogout}
-              className="w-full flex items-center gap-4 px-5 py-3.5 mb-4 rounded-full text-lg text-gray-400 cursor-default"
+              className="w-full flex items-center gap-2 px-2.5 py-2 mb-2 rounded-full text-xs text-gray-400 cursor-default"
               style={{ backgroundColor: 'rgba(0,0,0,0.03)' }}
             >
-              <LogOut className="w-7 h-7" />
-              <span className="font-bold">Logout</span>
+              <LogOut className="w-4 h-4" />
+              <span className="font-bold text-xs">Logout</span>
             </button>
 
             <div className="flex items-center justify-center">
-              <img src={redAngleLogo} alt="Red Angle Studio" className="h-8 w-auto" />
+              <img src={redAngleLogo} alt="Red Angle Studio" className="h-4 w-auto" />
             </div>
           </div>
         </div>

@@ -44,9 +44,9 @@ const LineChart = ({ data, hoveredIndex, onHover }: LineChartProps) => {
   }).join(' ');
   
   return (
-    <div className="h-72 sm:h-96 md:h-[28rem] relative">
+    <div className="h-64 sm:h-80 relative">
       {/* Y-axis labels */}
-      <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-sm sm:text-base md:text-lg text-gray-500 pr-3 font-medium">
+      <div className="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-xs sm:text-sm text-gray-500 pr-2 font-medium">
         {yAxisSteps.map((num) => (
           <span key={num}>{num}</span>
         ))}
@@ -207,11 +207,11 @@ const LineChart = ({ data, hoveredIndex, onHover }: LineChartProps) => {
             return (
               <div
                 key={index}
-                className="text-xs sm:text-sm md:text-base text-gray-600 text-center font-medium absolute"
+                className="text-xs text-gray-600 text-center font-medium absolute"
                 style={{ 
                   left: `${xPercent}%`,
                   transform: 'translateX(-50%)',
-                  minWidth: '60px'
+                  minWidth: '50px'
                 }}
               >
                 {point.month}
@@ -288,16 +288,16 @@ const AdminDashboard = () => {
       <div className="flex-1 flex flex-col overflow-hidden w-full min-w-0">
         <Header />
 
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 lg:p-10 w-full">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6 w-full">
           {/* Admin Dashboard Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 sm:mb-8">Admin Dashboard</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Admin Dashboard</h1>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
             {/* Employees Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
-              <div className="flex items-start gap-4">
+            <div className="bg-white rounded-xl shadow-md p-4 sm:p-6">
+              <div className="flex items-start gap-3">
                 <div className="relative flex-shrink-0">
-                  <svg className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28" viewBox="0 0 100 100">
+                  <svg className="w-16 h-16 sm:w-20 sm:h-20" viewBox="0 0 100 100">
                     {/* Background circle (light grey outline) */}
                     <circle
                       cx="50"
@@ -323,21 +323,21 @@ const AdminDashboard = () => {
                   </svg>
                   {/* Number inside circle */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#06b6d4]">12</span>
+                    <span className="text-lg sm:text-xl font-bold text-[#06b6d4]">12</span>
                   </div>
                 </div>
-                <div className="flex-1 pt-2">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1">Employees</h3>
-                  <p className="text-sm sm:text-base md:text-lg text-gray-500">Total Employees</p>
+                <div className="flex-1 pt-1">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Employees</h3>
+                  <p className="text-xs sm:text-sm text-gray-500">Total Employees</p>
                 </div>
               </div>
             </div>
 
             {/* Leads Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
-              <div className="flex items-start gap-4">
+            <div className="bg-white rounded-xl shadow-md p-4 sm:p-6">
+              <div className="flex items-start gap-3">
                 <div className="relative flex-shrink-0">
-                  <svg className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28" viewBox="0 0 100 100">
+                  <svg className="w-16 h-16 sm:w-20 sm:h-20" viewBox="0 0 100 100">
                     {/* Background circle (light grey outline) */}
                     <circle
                       cx="50"
@@ -363,21 +363,21 @@ const AdminDashboard = () => {
                   </svg>
                   {/* Number inside circle */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#06b6d4]">6</span>
+                    <span className="text-lg sm:text-xl font-bold text-[#06b6d4]">6</span>
                   </div>
                 </div>
-                <div className="flex-1 pt-2">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1">Leads</h3>
-                  <p className="text-sm sm:text-base md:text-lg text-gray-500">Total Leads</p>
+                <div className="flex-1 pt-1">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Leads</h3>
+                  <p className="text-xs sm:text-sm text-gray-500">Total Leads</p>
                 </div>
               </div>
             </div>
 
             {/* Billing Card */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 sm:col-span-2 lg:col-span-1">
-              <div className="flex items-start gap-4">
+            <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 sm:col-span-2 lg:col-span-1">
+              <div className="flex items-start gap-3">
                 <div className="relative flex-shrink-0">
-                  <svg className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28" viewBox="0 0 100 100">
+                  <svg className="w-16 h-16 sm:w-20 sm:h-20" viewBox="0 0 100 100">
                     {/* Background circle (light grey outline) */}
                     <circle
                       cx="50"
@@ -403,21 +403,21 @@ const AdminDashboard = () => {
                   </svg>
                   {/* Number inside circle */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#06b6d4]">42</span>
+                    <span className="text-lg sm:text-xl font-bold text-[#06b6d4]">42</span>
                   </div>
                 </div>
-                <div className="flex-1 pt-2">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1">Billing</h3>
-                  <p className="text-sm sm:text-base md:text-lg text-gray-500">Successful Billing</p>
+                <div className="flex-1 pt-1">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1">Billing</h3>
+                  <p className="text-xs sm:text-sm text-gray-500">Successful Billing</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 sm:p-8 mb-8 sm:mb-10 border border-gray-100">
-            <div className="flex items-center justify-between mb-6 sm:mb-8">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">Performance</h2>
-              <select className="px-4 py-3 bg-[#6938ef] text-white border-none rounded-lg text-base sm:text-lg font-medium focus:outline-none focus:ring-2 focus:ring-[#6938ef] cursor-pointer appearance-none pr-8" style={{
+          <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 mb-6 sm:mb-8 border border-gray-100">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Performance</h2>
+              <select className="px-3 py-2 bg-[#6938ef] text-white border-none rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#6938ef] cursor-pointer appearance-none pr-8" style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'right 0.75rem center',
@@ -440,23 +440,23 @@ const AdminDashboard = () => {
               hoveredIndex={hoveredIndex}
               onHover={setHoveredIndex}
             />
-            <div className="flex items-center justify-center gap-6 sm:gap-8 md:gap-10 mt-6">
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 sm:w-6 sm:h-6 bg-orange-500 rounded shadow-sm"></div>
-                <span className="text-base sm:text-lg md:text-xl text-gray-600 font-semibold">Achieved</span>
+            <div className="flex items-center justify-center gap-4 sm:gap-6 mt-4">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-orange-500 rounded shadow-sm"></div>
+                <span className="text-sm text-gray-600 font-semibold">Achieved</span>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-5 h-5 sm:w-6 sm:h-6 bg-[#6938ef] rounded shadow-sm"></div>
-                <span className="text-base sm:text-lg md:text-xl text-gray-600 font-semibold">Target</span>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-[#6938ef] rounded shadow-sm"></div>
+                <span className="text-sm text-gray-600 font-semibold">Target</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 sm:p-8 border border-gray-100">
-            <div className="flex items-center justify-between mb-6 sm:mb-8">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">Projects</h2>
+          <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 border border-gray-100">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">Projects</h2>
               <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                <svg className="w-6 h-6 sm:w-7 sm:h-7 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                 </svg>
               </button>
@@ -465,29 +465,29 @@ const AdminDashboard = () => {
               <table className="w-full">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="text-left py-4 px-4 sm:px-6 text-base sm:text-lg md:text-xl font-bold text-gray-700">Employee</th>
-                    <th className="text-left py-4 px-4 sm:px-6 text-base sm:text-lg md:text-xl font-bold text-gray-700">Date</th>
-                    <th className="text-left py-4 px-4 sm:px-6 text-base sm:text-lg md:text-xl font-bold text-gray-700">Budget</th>
-                    <th className="text-left py-4 px-4 sm:px-6 text-base sm:text-lg md:text-xl font-bold text-gray-700">Status</th>
+                    <th className="text-left py-2 px-3 text-xs font-bold text-gray-700">Employee</th>
+                    <th className="text-left py-2 px-3 text-xs font-bold text-gray-700">Date</th>
+                    <th className="text-left py-2 px-3 text-xs font-bold text-gray-700">Budget</th>
+                    <th className="text-left py-2 px-3 text-xs font-bold text-gray-700">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {projects.map((project, index) => (
                     <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                      <td className="py-4 px-4 sm:px-6">
-                        <div className="flex items-center gap-3 sm:gap-4">
+                      <td className="py-2 px-3">
+                        <div className="flex items-center gap-2">
                           <img
                             src={project.avatar}
                             alt={project.employee}
-                            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full"
+                            className="w-8 h-8 rounded-full"
                           />
-                          <span className="text-base sm:text-lg md:text-xl text-gray-900 font-semibold">{project.employee}</span>
+                          <span className="text-xs text-gray-900 font-semibold">{project.employee}</span>
                         </div>
                       </td>
-                      <td className="py-4 px-4 sm:px-6 text-base sm:text-lg md:text-xl text-gray-600 font-medium">{project.date}</td>
-                      <td className="py-4 px-4 sm:px-6 text-base sm:text-lg md:text-xl text-gray-900 font-bold">{project.budget}</td>
-                      <td className="py-4 px-4 sm:px-6">
-                        <span className={`inline-block px-3 sm:px-4 py-2 rounded-full text-sm sm:text-base md:text-lg font-bold ${getStatusColor(project.status)}`}>
+                      <td className="py-2 px-3 text-xs text-gray-600 font-medium">{project.date}</td>
+                      <td className="py-2 px-3 text-xs text-gray-900 font-bold">{project.budget}</td>
+                      <td className="py-2 px-3">
+                        <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-bold ${getStatusColor(project.status)}`}>
                           {project.status}
                         </span>
                       </td>
