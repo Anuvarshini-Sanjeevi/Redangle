@@ -59,13 +59,12 @@ const Sidebar = () => {
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         transition-transform duration-300 ease-in-out h-full`}
         style={{
-          // #6938ef with 20% opacity (use 0.11 for 11%)
           backgroundColor: 'rgba(105, 56, 239, 0.20)',
           borderRadius: '24px',
         }}
       >
         <div className="flex flex-col h-full px-4 pt-6 pb-6">
-          {/* admin avatar */}
+          
           <div className="mb-8 flex items-center gap-4 px-2">
             <div className="w-14 h-14 rounded-full overflow-hidden">
               <img
@@ -77,7 +76,6 @@ const Sidebar = () => {
             <span className="text-base font-bold text-gray-700">Admin</span>
           </div>
 
-          {/* menu */}
           <nav className="flex-1 overflow-y-auto">
             <ul className="space-y-3">
               {menuItems.map((item) => {
@@ -118,7 +116,7 @@ const Sidebar = () => {
             </ul>
           </nav>
 
-          {/* logout + logo */}
+         
           <div className="mt-6">
             <button
               onClick={handleLogout}
